@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}} - Tech Blog</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">Tech Blog</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    {{#if logged_in}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/dashboard">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout">Logout</a>
+                        </li>
+                    {{else}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/signup">Sign Up</a>
+                        </li>
+                    {{/if}}
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <h1>{{title}}</h1>
+        <p>{{content}}</p>
+        <p><strong>Posted by:</strong> {{user.username}} on {{createdAt}}</p>
+
+        <!-- Comments Section -->
+        <h3>Comments</h3>
+        {{#each comments}}
+            <div class="card my-3">
+                <div class="card-body">
+                    <p class="card-text">{{this.content}}</p>
+                    <p class="card-text"><small class="text-muted">By {{this.user.username}}</small></p>
+                </div>
+            </div>
+        {{/each}}
+
+        <!-- Comment Form -->
+        {{#if logged_in}}
+            <form action="/comment" method="POST">
+                <textarea name="content" class="form-control" placeholder="Write your comment..." required></textarea>
+                <input type="hidden" name="post_id" value="{{id}}">
+                <button type="submit" class="btn btn-primary mt-2">Submit</button>
+            </form>
+        {{else}}
+            <p>You must be logged in to comment.</p>
+        {{/if}}
+    </main>
+
+    <footer class="text-center py-3 bg-light">
+        <p>© 2024 Tech Blog. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
