@@ -1,46 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{post.title}} - Tech Blog</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <header class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="/">Tech Blog</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ms-auto">
-                    {{#if logged_in}}
-                        <li class="nav-item">
-                            <a class="nav-link" href="/dashboard">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/logout">Logout</a>
-                        </li>
-                    {{else}}
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/signup">Sign Up</a>
-                        </li>
-                    {{/if}}
-                </ul>
+<div class="card" style="width: 70%; margin: 0 auto; padding: 20px">
+    {{#if canEdit}}
+    <div style="display: flex; justify-content: space-around;">
+        <button class="js-modal-trigger button is-warning" data-target="edit-post">Edit Post</button>
+        <button class="js-modal-trigger button is-danger" data-target="delete-post">Delete Post</button>
+    </div>
+    {{/if}}
+    <h2 class="title is-2 post-title" id="post-title">{{post.post_title}}</h2>
+    <h3 class="title is-3 post-title">By: {{post.post_author}}</h3>
+    <p class="card-content" id="post-content">{{post.post_content}}</p>
+</div>
+
+<div class="comment-section">
+    <h3 class="title is-3">Comments</h3>
+{{#each comments as |comment|}}
+    <div class="card comment-card">
+        <h4 class="title is-4" style="margin-left: 20px;">Comment by: {{comment.comment_author}}</h4>
+        <p class="card-content">{{comment.comment_content}}</p>
+    </div>
+{{/each}}
+</div>
+
+{{!-- HTML for Trigger --}}
+<button class="js-modal-trigger button is-success comment-btn" data-post="{{post.id}}" data-target="create-comment" id="comment">Add a comment to this post</button>
+
+{{!-- HTML for  comment modal --}}
+<div id="create-comment" class="modal fade">
+    <div class="modal-background">
+        <div class="modal-content">
+            <div class="modal-card">
+                <div class="modal-card-body">
+                    <h3 class="title is-3" style="text-align: center;"> ⬇️ Type your comment below! ⬇️ </h3>
+                    <form>
+                        <div class="input-group modal-inputs">
+                            <label for="comment-content-input">Your comment:</label>
+                            <textarea id="comment-content-input" class="form-input" type="text"></textarea>
+                        </div>
+                        <div style="display: flex; justify-content: space-around;">
+                            <button class="button is-success" type="submit" id="submit-comment">Post!</button>
+                            <button class="close-modal button is-danger" type="submit" id="close-modal">Cancel</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </header>
+    </div>
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>
 
-    <main class="container my-5">
-        <h1>{{post.title}}</h1>
-        <p>{{post.content}}</p>
-        <p><small class="text-muted">By {{post.user.username}} on {{post.createdAt}}</small></p>
-    </main>
+{{!-- HTML for edit post modal --}}
+<div id="edit-post" class="modal fade">
+    <div class="modal-background">
+        <div class="modal-content">
+            <div class="modal-card">
+                <div class="modal-card-body">
+                    <h3 class="title is-3" style="text-align: center;"> ⬇️ Edit the post below! ⬇️ </h3>
+                    <form>
+                        <div class="input-group modal-inputs">
+                            <label for="edit-title-input">Title for post:</label>
+                            <input id="edit-title-input" class="form-input" type="text" style="width: 70%;">
+                        </div>
+                        <div class="input-group modal-inputs">
+                            <label for="edit-content-input">Post content:</label>
+                            <textarea id="edit-content-input" class="form-input" type="text" style="max-width: 70%; min-width: 70%; min-height: 100px;"></textarea>
+                        </div>
+                        <div style="display: flex; justify-content: space-around;">
+                            <button class="button is-success" type="submit" id="submit-edit-post">Post!</button>
+                            <button class="close-modal button is-danger" type="submit" id="close-edit-modal">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>
 
-    <footer class="text-center py-3 bg-light">
-        <p>© 2024 Tech Blog. All rights reserved.</p>
-    </footer>
-</body>
-</html>
+{{!-- HTML for delete post modal --}}
+<div id="delete-post" class="modal fade">
+    <div class="modal-background">
+        <div class="modal-content">
+            <div class="modal-card">
+                <div class="modal-card-body">
+                    <h3 class="title is-3" style="text-align: center;">Are you sure that you want to delete this post?</h3>
+                    <form>
+                        <div style="display: flex; justify-content: space-around;">
+                            <button class="button is-success" type="submit" id="submit-delete-post">Yes</button>
+                            <button class="close-modal button is-danger" type="submit" id="close-delete-modal">No</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>
+
+<script src="/js/comment.js"></script>
+
+{{#if canEdit}}
+<script src="/js/update.js"></script>
+<script src="/js/delete.js"></script>
+{{/if}}

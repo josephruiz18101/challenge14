@@ -1,0 +1,49 @@
+<div class="login-page-cards">
+  {{!-- Login Card --}}
+  <div class="card login-card" style="width: 40%; padding: 20px; margin: 10px;">
+    <h3 class="title is-3" style="text-align: center;">Login</h3>
+    <form>
+      {{!-- Email group --}}
+      <div class="form-group" style="display: flex; flex-direction: column; margin-bottom: 10px;">
+        <label for="email-login">Email:</label>
+        <input class="form-input" type="text" id="email-login" style="margin: 0 auto; width: 100%;" >
+      </div>
+      {{!-- Password group --}}
+      <div class="form-group" style="display: flex; flex-direction: column; margin-bottom: 10px;">
+        <label for="password-login">Password:</label>
+        <input class="form-input" type="password" id="password-login" style="margin: 0 auto; width: 100%;" >
+      </div>
+      {{!-- Submit button group --}}
+      <div style="display: flex; justify-content: center;">
+        <button class="button is-link" type="submit" id="login-submit" style="margin: 0 auto;">Login</button>
+      </div>
+    </form>
+  </div>
+  {{!-- Signup card --}}
+  <div class="card signup-card" style="width: 40%; padding: 20px; margin: 10px;">
+    <h3 class="title is-3" style="text-align: center;">Signup</h3>
+    <form>
+      {{!-- Username group --}}
+      <div class="form-group" style="display: flex; flex-direction: column; margin-bottom: 10px;">
+        <label for="username-signup">Username:</label>
+        <input class="form-input" type="text" id="username-signup" style="margin: 0 auto; width: 100%;" >
+      </div>
+      {{!-- Email group --}}
+      <div class="form-group" style="display: flex; flex-direction: column; margin-bottom: 10px;">
+        <label for="email-signup">Email:</label>
+        <input class="form-input" type="text" id="email-signup" style="margin: 0 auto; width: 100%;" >
+      </div>
+      {{!-- Password group --}}
+      <div class="form-group" style="display: flex; flex-direction: column; margin-bottom: 10px;">
+        <label for="password-signup">Password:</label>
+        <input class="form-input" type="password" id="password-signup" style="margin: 0 auto; width: 100%;" >
+      </div>
+      {{!-- Submit button group --}}
+      <div style="display: flex; justify-content: center;">
+        <button class="button is-link" type="submit" id="signup-submit" style="margin: 0 auto;">Sign up!</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="/js/login.js"></script>

@@ -1,11 +1,40 @@
-<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Blog</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Blog</title>
+    {{!-- Links to 3rd party styles --}}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+  {{!-- Link to custom styles --}}
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
+
 <body>
-    {{{body}}}
+    <header>
+        <h1 class="title is-1">Welcome to the Tech Blog!</h1>
+    </header>
+    <nav>
+        <a class="button is-link nav-btn" href="/">Home</a>
+
+        {{#if loggedIn}}
+        <a class="button is-link nav-btn" id="logout" href="/login">Logout</a>
+        {{/if}}
+
+        {{#unless loggedIn}}
+        <a class="button is-link nav-btn" href="/login">Login</a>
+        {{/unless}}
+    </nav>
+    <main>
+        {{{ body }}}
+    </main>
 </body>
+
+<script src="/js/modal.js"></script>
+{{#if loggedIn}}
+<script src="/js/logout.js"></script>
+{{/if}}
+
 </html>

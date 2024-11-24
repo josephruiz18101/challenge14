@@ -1,23 +1,13 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const BlogPost = require('./BlogPost');
+const Comment = require('./Comment');
+const User = require('./User');
 
-// Replace 'your_database', 'username', 'password', and 'host' with your actual database details
-const sequelize = new Sequelize({
-  dialect: 'postgres', // or 'mysql', 'sqlite', etc.
-  host: 'localhost',    // replace with your DB host if necessary
-  username: 'postgres',  // replace with your DB username
-  password: 'Lovebsdraco18101',  // replace with your DB password
-  database: 'tech_blog_db',  // replace with your DB name
+BlogPost.hasMany(Comment, {
+    foreignKey: 'post_id'
 });
 
-const Post = sequelize.define('Post', {
-  title: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  content: {
-    type: DataTypes.TEXT,
-    allowNull: false
-  },
+Comment.belongsTo(BlogPost, {
+    foreignKey: 'post_id'
 });
 
-module.exports = { Post, sequelize };
+module.exports = { BlogPost, Comment, User }

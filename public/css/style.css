@@ -1,0 +1,107 @@
+header {
+    margin-top: 20px;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.nav-btn {
+    margin: 10px;
+    width: 15%;
+}
+
+.new {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+a {
+    margin: 10px;
+}
+
+.posts {
+    width: 80%;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+.post-title {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.post-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.author {
+    text-align: right;
+}
+
+.content-form {
+    width: 80%
+}
+
+.comment-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 60px;
+}
+
+.comment-card {
+    width: 75%;
+    padding: 10px;
+    margin: 10px;
+}
+
+.comment-btn {
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.login-page-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-inputs {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#post-title-input {
+    width: 70%;
+}
+
+#post-content-input {
+    min-width: 70%;
+    max-width: 70%;
+    min-height: 200px;
+    padding: 5px;
+}
+
+#comment-content-input {
+    min-width: 70%;
+    max-width: 70%;
+    min-height: 200px;
+    padding: 5px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
