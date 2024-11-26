@@ -21,7 +21,7 @@ Comment.init(
     post_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'post', // Ensure your `post` table exists and is linked properly.
+        model: 'blog-post', // Ensure your `post` table exists and is linked properly.
         key: 'id',
       },
     },
